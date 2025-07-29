@@ -1,0 +1,5 @@
+target
+**/target
+so_files
+*.lock
+.DS_STORE

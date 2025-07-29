@@ -1,0 +1,1 @@
+pub mod liblipc_bindings;
