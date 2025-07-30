@@ -4,20 +4,10 @@ I recommend using `zig-build` to compile. Don't need to worry about getting the 
 
 Unfortunately, from 2022> Rust raised the minimum glib version to 2.17>. 
 This is an issue because the kindle uses 2.12, and I am not able to use `musl` instead of `gnu` since I am linking to a shared library on the kindle. 
-Thus, my options were:  
-1. Downgrade the rust compiler
-2. Dynamically load the shared libraries in code. 
 
-If you go for 2.  
+Unfortunately, for `musl` dynamic loading requires `ld-musl-arm.so.1` to be present in `/lib`.  
 
-`bindgen` already plays nicely with `libloading` - simply use `--dynamic-loading LIPC` to generate in "dynamic mode". 
-Unfortunately not documented well, but read more here:
-- [Github issue](https://github.com/rust-lang/rust-bindgen/issues/1541)
-- [Source code](https://docs.rs/bindgen/latest/src/bindgen/codegen/dyngen.rs.html)
-
-Unfortunately, since I'm using `musl` - dynamic loading is not supported unless `ld-musl-arm.so.1` is present in `/lib`.  
-
-I got the `.so` from [here](https://packages.debian.org/sid/armel/musl/download).  
+I got the `.so` from [here](https://packages.debian.org/sid/armel/musl/download) and copied it into `/lib` (require `mntroot rw`)  
 However, now I could simply do 1, and everything worked!  
 
 # Todo

@@ -8,3 +8,4 @@ rustflags = ["-C", "link-arg=-ldlasd"]
 
 [dependencies]
 libloading = "0.8.8"
+signal-hook = "0.3.18"

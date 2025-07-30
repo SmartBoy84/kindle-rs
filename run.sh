@@ -12,4 +12,5 @@ scp target/armv7-unknown-linux-musleabi/release/lifeguard root@192.168.0.252:/mn
 
 # run
 echo "running"
-ssh root@192.168.0.252 "/mnt/us/dev/lifeguard"
+# note; -t needed to create a pseudo-terminal for it - ensures sigint passed as normal so service unregistered properly
+ssh -t root@192.168.0.252 "/mnt/us/dev/lifeguard"
